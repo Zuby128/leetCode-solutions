@@ -1,0 +1,53 @@
+QUESTION
+Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
+An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. 
+You may assume all four edges of the grid are all surrounded by water.
+
+Example 1:
+Input: grid = [
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+]
+Output: 1
+
+
+Example 2:
+Input: grid = [
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["0","0","1","0","0"],
+  ["0","0","0","1","1"]
+]
+Output: 3
+
+
+SOLUTION (JavaScript):
+
+let grid = (arr, i, j) => {
+  if(i<0 || i>arr.length || j<0 || j>arr[i].length){
+    return;
+  }
+  if(arr[i][j]=='0'){
+    return true;
+  }
+}
+
+let functionNew = (A) => {
+  let islands = []  // you can use count number inorder to this array but i just want to detect exact positions of the islands. 
+  for (let i=0; i<A.length; i++) {
+    for (let j=0; j<A[i].length; j++) {
+      if(A[i][j]=='1'){
+        if (grid(A, i, j-1) &&
+          grid(A, i, j+1) &&
+          grid(A, i-1, j) &&
+          grid(A, i+1, j)) {
+          islands.push({i,j})
+        }
+        
+      }
+    }
+  }
+  return islands.length  // return island for exact positions of the islands
+}
